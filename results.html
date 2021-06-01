@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>TO DO LIST</title>
+</head> 
+<body>
+    <h2><center>SEARCH RESULTS</h2></center>
+    <a href="/"><center>HOME</a>
+        <table border="1" style="margin-left: auto;margin-right: auto;margin-top: 20px;" >
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            {{range .lists}}
+                <tr>
+                    <td>{{.Id}}</td>
+                    <td>{{.Title}}</td>
+                    <td>{{.Text}}</td>
+                    <td>{{.Date}}</td>
+                    <td><a href="/changeStatusResult/{{.Id}}" id="link" style="text-decoration: none; cursor: default;">{{.Status}}</a></td>
+                    <td><a href="/edit/{{.Id}}" id="link1">Edit</a>|<a href="/delete/{{.Id}}">Delete</a></td>
+                </tr>
+            {{end}}
+        </table>
+        {{range .lists}}
+            <script type="text/javascript">
+            var temp="{{.Status}}";
+            if(temp=='completed') {
+                document.getElementById("link1").style.textDecoration="none";
+                document.getElementById("link1").style.pointerEvents="none";
+                document.getElementById("link1").style.cursor="default";
+            }
+            </script>
+        {{end}}
+</body>
+</html>
